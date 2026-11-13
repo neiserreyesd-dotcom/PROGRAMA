@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --app-bg: #0c0e12;
+  --app-bg-glass: rgba(12, 14, 18, 0.94);
+  --app-surface: #141720;
+  --app-surface-elevated: #1b1f2b;
+  --app-border: rgba(255, 255, 255, 0.09);
+  --app-border-strong: rgba(255, 255, 255, 0.18);
+  --app-text: #f3f4f6;
+  --app-text-muted: #9ca3af;
+  --app-text-soft: #6b7280;
+  --app-accent: #fbbf24;
+  --app-accent-soft: rgba(251, 191, 36, 0.15);
+  --app-accent-glow: rgba(251, 191, 36, 0.12);
+  --app-accent-border: rgba(251, 191, 36, 0.42);
+  --app-accent-contrast: #0c0e12;
+  --lyric-text: #d4d4d8;
+  --lyric-highlight: #fde68a;
+  --lyric-unfilled: rgba(212, 212, 216, 0.44);
+  --lyric-font: "Outfit", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: var(--app-bg);
+    color: var(--app-text);
+  }
+
+  button,
+  [role="button"],
+  [role="slider"] {
+    touch-action: manipulation;
+  }
+
+  /* Pro studio range sliders */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    height: 20px;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 9999px;
+    background: var(--app-border-strong);
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: var(--app-accent);
+    border: 2px solid var(--app-surface);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    margin-top: -5px;
+    transition: transform 120ms ease;
+  }
+
+  input[type="range"]:hover::-webkit-slider-thumb {
+    transform: scale(1.15);
+  }
+
+  input[type="range"]::-moz-range-track {
+    height: 4px;
+    border-radius: 9999px;
+    background: var(--app-border-strong);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: var(--app-accent);
+    border: 2px solid var(--app-surface);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Custom subtle scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--app-border-strong);
+    border-radius: 3px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.pb-safe {
+  padding-bottom: max(0.625rem, env(safe-area-inset-bottom));
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth karaoke text progress fill driven by user theme colors */
+.karaoke-line-active {
+  background-image: linear-gradient(
+    90deg,
+    var(--lyric-highlight) 0%,
+    var(--app-accent) var(--line-progress, 0%),
+    var(--lyric-unfilled) var(--line-progress, 0%),
+    var(--lyric-unfilled) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .karaoke-line-active {
+    background-image: none;
+    color: var(--lyric-highlight);
+  }
+}
+

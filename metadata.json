@@ -1,0 +1,6 @@
+{
+  "name": "Estrofa",
+  "description": "Analizador musical con letras sincronizadas en tiempo real y estrofas destacadas para cantar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
